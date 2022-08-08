@@ -18,7 +18,7 @@ RUN wget https://github.com/Illumina/GraphAlignmentViewer/archive/${GRAPH_ALIGNM
   && rm ${GRAPH_ALIGNMENT_VIEWER_COMMIT}.zip
 
 # install Expansion Hunter
-ENV EXPANSION_HUNTER_VERSION=3.1.2
+ENV EXPANSION_HUNTER_VERSION=5.0.0
 
 WORKDIR /tmp
 RUN wget https://github.com/Illumina/ExpansionHunter/releases/download/v${EXPANSION_HUNTER_VERSION}/ExpansionHunter-v${EXPANSION_HUNTER_VERSION}-linux_x86_64.tar.gz \
