@@ -5,17 +5,16 @@ LABEL \
   description="ExpansionHunter image for use in Workflows(https://github.com/Illumina/ExpansionHunter/)"
 
 RUN apt-get update && apt-get install -y \
-  unzip \
   wget
 
-# install GrapAlignmentViewer (use commit for version control)
-ENV GRAPH_ALIGNMENT_VIEWER_COMMIT=b4805e544f503342890d9fdc6388502ac4b4b1e8
+# install REViewer
+ENV REVIEWER_VERSION=0.2.7
 
-RUN pip3 install Matplotlib Numpy Pysam PyYAML
-RUN wget https://github.com/Illumina/GraphAlignmentViewer/archive/${GRAPH_ALIGNMENT_VIEWER_COMMIT}.zip \
-  && unzip ${GRAPH_ALIGNMENT_VIEWER_COMMIT}.zip \
-  && mv GraphAlignmentViewer-${GRAPH_ALIGNMENT_VIEWER_COMMIT} GraphAlignmentViewer \
-  && rm ${GRAPH_ALIGNMENT_VIEWER_COMMIT}.zip
+RUN wget https://github.com/Illumina/REViewer/releases/download/v${REVIEWER_VERSION}/REViewer-v${REVIEWER_VERSION}-linux_x86_64.gz \
+  && gunzip REViewer-v${REVIEWER_VERSION}-linux_x86_64.gz \
+  && mv REViewer-v${REVIEWER_VERSION}-linux_x86_64 /opt/REViewer \
+  && chmod +x /opt/REViewer
+
 
 # install Expansion Hunter
 ENV EXPANSION_HUNTER_VERSION=5.0.0
